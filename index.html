@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NexaHub Java Coding</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            ✦ NexaHub
+        </div>
+
+        <a href="../index.html" class="home-btn">
+            🏠 Home
+        </a>
+
+    </nav>
+
+
+    <section class="hero">
+
+        <p>☕ NEXAHUB JAVA IDE</p>
+
+        <h1>Java Coding</h1>
+
+        <h2>Write. Run. Learn.</h2>
+
+    </section>
+
+
+    <main class="editor-section">
+
+        <section class="editor-box">
+
+            <div class="editor-header">
+
+                <h2>☕ Java Code Editor</h2>
+
+                <span>Java</span>
+
+            </div>
+
+
+            <textarea id="codeEditor">public class Main {
+
+    public static void main(String[] args) {
+
+        System.out.println("Hello Java!");
+
+        int a = 10;
+        int b = 20;
+
+        System.out.println(a + b);
+
+    }
+
+}</textarea>
+
+
+            <div class="buttons">
+
+                <button onclick="runJava()">
+                    ▶️ Run Code
+                </button>
+
+                <button onclick="clearCode()">
+                    🗑️ Clear
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <section class="output-box">
+
+            <div class="output-header">
+
+                <h2>📤 Output</h2>
+
+                <span>Console</span>
+
+            </div>
+
+            <pre id="output">Click "Run Code" to see the output.</pre>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        © 2026 NexaHub | Java Coding
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

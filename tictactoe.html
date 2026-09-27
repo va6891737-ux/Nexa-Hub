@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tic-Tac-Toe | NexaHub</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-family: Arial, sans-serif;
+
+            background: #020617;
+
+            color: white;
+        }
+
+        .game-container {
+            width: 90%;
+            max-width: 500px;
+
+            padding: 35px;
+
+            text-align: center;
+
+            background: #0f172a;
+
+            border: 1px solid rgba(34, 211, 238, 0.4);
+
+            border-radius: 20px;
+
+            box-shadow: 0 0 35px rgba(34, 211, 238, 0.2);
+        }
+
+        h1 {
+            color: #22d3ee;
+
+            margin-bottom: 10px;
+
+            text-shadow: 0 0 15px #22d3ee;
+        }
+
+        #status {
+            margin: 20px;
+
+            color: #c4b5fd;
+
+            font-size: 18px;
+        }
+
+        .board {
+            width: 300px;
+
+            max-width: 100%;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 10px;
+        }
+
+        .cell {
+            height: 90px;
+
+            border: 1px solid rgba(34, 211, 238, 0.4);
+
+            border-radius: 12px;
+
+            background: #020617;
+
+            color: #22d3ee;
+
+            font-size: 35px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .cell:hover {
+            border-color: #22d3ee;
+
+            box-shadow: 0 0 15px rgba(34, 211, 238, 0.5);
+        }
+
+        .buttons {
+            margin-top: 25px;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        .reset,
+        .back {
+            padding: 12px 22px;
+
+            margin: 5px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            color: white;
+
+            cursor: pointer;
+        }
+
+        .reset {
+            background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+        }
+
+        .back {
+            background: #1e293b;
+        }
+
+        .back:hover {
+            background: #334155;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="game-container">
+
+        <h1>❌⭕ Tic-Tac-Toe</h1>
+
+        <p id="status">Player X's Turn</p>
+
+        <div class="board">
+
+            <button class="cell" onclick="makeMove(0)"></button>
+            <button class="cell" onclick="makeMove(1)"></button>
+            <button class="cell" onclick="makeMove(2)"></button>
+
+            <button class="cell" onclick="makeMove(3)"></button>
+            <button class="cell" onclick="makeMove(4)"></button>
+            <button class="cell" onclick="makeMove(5)"></button>
+
+            <button class="cell" onclick="makeMove(6)"></button>
+            <button class="cell" onclick="makeMove(7)"></button>
+            <button class="cell" onclick="makeMove(8)"></button>
+
+        </div>
+
+        <div class="buttons">
+
+            <button class="reset" onclick="resetGame()">
+                🔄 Restart
+            </button>
+
+            <button class="back"
+                    onclick="window.location.href='games.html'">
+                ← Games
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        let board = ["", "", "", "", "", "", "", "", ""];
+
+        let currentPlayer = "X";
+
+        let gameOver = false;
+
+
+        function makeMove(index) {
+
+            if (board[index] !== "" || gameOver) {
+                return;
+            }
+
+            board[index] = currentPlayer;
+
+            document.querySelectorAll(".cell")[index].innerText =
+                currentPlayer;
+
+            checkWinner();
+        }
+
+
+        function checkWinner() {
+
+            const winningPatterns = [
+
+                [0, 1, 2],
+                [3, 4, 5],
+                [6, 7, 8],
+
+                [0, 3, 6],
+                [1, 4, 7],
+                [2, 5, 8],
+
+                [0, 4, 8],
+                [2, 4, 6]
+
+            ];
+
+
+            for (let pattern of winningPatterns) {
+
+                const [a, b, c] = pattern;
+
+                if (
+                    board[a] &&
+                    board[a] === board[b] &&
+                    board[a] === board[c]
+                ) {
+
+                    document.getElementById("status").innerText =
+                        "🎉 Player " + currentPlayer + " Wins!";
+
+                    gameOver = true;
+
+                    return;
+                }
+            }
+
+
+            if (!board.includes("")) {
+
+                document.getElementById("status").innerText =
+                    "🤝 It's a Draw!";
+
+                gameOver = true;
+
+                return;
+            }
+
+
+            currentPlayer =
+                currentPlayer === "X" ? "O" : "X";
+
+
+            document.getElementById("status").innerText =
+                "Player " + currentPlayer + "'s Turn";
+        }
+
+
+        function resetGame() {
+
+            board = ["", "", "", "", "", "", "", "", ""];
+
+            currentPlayer = "X";
+
+            gameOver = false;
+
+
+            document.querySelectorAll(".cell").forEach(cell => {
+                cell.innerText = "";
+            });
+
+
+            document.getElementById("status").innerText =
+                "Player X's Turn";
+        }
+
+    </script>
+
+</body>
+
+</html>
