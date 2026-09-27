@@ -47,8 +47,6 @@ NexaHub/
 ├── index.html
 ├── style.css
 ├── script.js
-│
-├── calculator/
 ├── games/
 ├── files/
 ├── notes/
